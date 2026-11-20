@@ -1,0 +1,1 @@
+/usr/bin/em++ --bind --no-entry -sWASM=1 -sALLOW_MEMORY_GROWTH=1 -sMODULARIZE=1 -sEXPORT_ES6=1 @CMakeFiles/game.dir/objects1.rsp -o game.js 

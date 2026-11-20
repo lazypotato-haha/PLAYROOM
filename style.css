@@ -1,0 +1,448 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --lavender: #a78bfa;
+    --purple: #7655c9;
+    --light-purple: #eee8ff;
+    --background: #faf8ff;
+    --text: #302747;
+    --muted: #827991;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+    background: var(--white);
+    border-bottom: 1px solid #eee8f7;
+}
+
+.navbar h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 29px;
+    letter-spacing: 1px;
+}
+
+.navbar h1 span {
+    color: var(--lavender);
+}
+
+.navbar p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 55px 25px;
+}
+
+.welcome {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.eyebrow {
+    color: var(--purple);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+}
+
+.welcome h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(32px, 5vw, 48px);
+    margin-bottom: 12px;
+}
+
+.welcome > p:last-child {
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.game-card {
+    background: var(--white);
+    border: 1px solid #eee8f7;
+    border-radius: 18px;
+    padding: 30px 22px;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.25s ease;
+    color: var(--text);
+    font-family: inherit;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--lavender);
+    box-shadow: 0 12px 30px rgba(118, 85, 201, 0.10);
+}
+
+.game-card span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 53px;
+    height: 53px;
+    background: var(--light-purple);
+    border-radius: 15px;
+    font-size: 25px;
+    margin-bottom: 22px;
+}
+
+.game-card h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 19px;
+    margin-bottom: 9px;
+}
+
+.game-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+.back-button {
+    background: var(--light-purple);
+    border: none;
+    color: var(--purple);
+    padding: 11px 17px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+#game-content {
+    background: var(--white);
+    border: 1px solid #eee8f7;
+    border-radius: 20px;
+    padding: 35px;
+    min-height: 300px;
+}
+
+#game-content h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+#game-content > p {
+    color: var(--muted);
+    margin-bottom: 20px;
+}
+
+#game-content input {
+    padding: 13px 15px;
+    border: 1px solid #ddd3f5;
+    border-radius: 10px;
+    outline: none;
+    font-family: inherit;
+    font-size: 15px;
+    margin: 12px 8px 12px 0;
+    max-width: 100%;
+}
+
+#game-content input:focus {
+    border-color: var(--purple);
+}
+
+#game-content button:not(.tic-cell):not(.key):not(.hangman-key) {
+    padding: 12px 20px;
+    background: var(--purple);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    margin: 8px 5px 8px 0;
+}
+
+#game-content button:hover {
+    opacity: 0.88;
+}
+
+/* WORD GUESS */
+
+#game-content #word-board {
+    margin: 25px 0;
+}
+
+.word-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.word-tile {
+    width: 52px;
+    height: 52px;
+    border: 2px solid #ddd3f5;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 21px;
+    text-transform: uppercase;
+    color: var(--text);
+}
+
+.word-tile.green,
+#game-content .key.green {
+    background: #8fc7a0;
+    border-color: #8fc7a0;
+    color: white;
+}
+
+.word-tile.yellow,
+#game-content .key.yellow {
+    background: #e8c76f;
+    border-color: #e8c76f;
+    color: white;
+}
+
+.word-tile.grey,
+#game-content .key.grey {
+    background: #a6a2ad;
+    border-color: #a6a2ad;
+    color: white;
+}
+
+#word-keyboard {
+    width: 100%;
+    max-width: 520px;
+    margin: 25px auto;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 8px;
+}
+
+#game-content .key {
+    min-width: 32px;
+    height: 48px;
+    padding: 0 7px;
+    border: none;
+    border-radius: 6px;
+    background: #e9e4f2;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 0;
+}
+
+#game-content .key.special-key {
+    min-width: 58px;
+    font-size: 11px;
+    background: #d9cafa;
+    color: #51358f;
+}
+
+/* HANGMAN */
+
+#hangman-drawing {
+    display: flex;
+    justify-content: center;
+    margin: 15px auto 20px;
+}
+
+.hangman-svg {
+    width: 220px;
+    height: 220px;
+}
+
+.hangman-svg line,
+.hangman-svg circle {
+    stroke: var(--purple);
+    stroke-width: 4;
+    stroke-linecap: round;
+    fill: none;
+}
+
+#hangman-word {
+    text-align: center;
+    letter-spacing: 9px;
+    font-size: 28px;
+    color: var(--purple);
+    margin: 25px 0;
+}
+
+.hangman-counter {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 20px;
+}
+
+.hangman-counter strong {
+    color: var(--purple);
+    font-size: 18px;
+}
+
+#hangman-keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7px;
+    max-width: 520px;
+    margin: 25px auto;
+}
+
+#game-content .hangman-key {
+    width: 38px;
+    height: 42px;
+    background: #e9e4f2;
+    color: var(--text);
+    border: none;
+    border-radius: 7px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 0;
+}
+
+#game-content .hangman-key.correct-key {
+    background: #8fc7a0;
+    color: white;
+}
+
+#game-content .hangman-key.wrong-key {
+    background: #a6a2ad;
+    color: white;
+}
+
+#game-content .hangman-key:disabled {
+    cursor: not-allowed;
+    opacity: 0.9;
+}
+
+/* OTHER GAMES */
+
+.tic-board {
+    display: grid;
+    grid-template-columns: repeat(3, 85px);
+    gap: 9px;
+    margin: 25px 0;
+}
+
+.tic-cell {
+    height: 85px;
+    border: 1px solid #ddd3f5;
+    border-radius: 12px;
+    background: var(--light-purple);
+    color: var(--purple);
+    font-size: 30px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#scrambled-word {
+    font-family: 'Outfit', sans-serif;
+    color: var(--purple);
+    letter-spacing: 8px;
+    margin: 30px 0;
+}
+
+#game-content #word-message,
+#game-content #hangman-message,
+#game-content #scramble-message,
+#game-content #number-message {
+    color: var(--purple);
+    font-weight: 600;
+    margin: 15px 0;
+}
+
+footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    padding: 25px;
+}
+
+@media (max-width: 750px) {
+    .game-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navbar {
+        padding: 20px 6%;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar p {
+        font-size: 11px;
+    }
+
+    #game-content {
+        padding: 20px 12px;
+    }
+
+    .word-tile {
+        width: 45px;
+        height: 45px;
+    }
+
+    #game-content .key {
+        min-width: 25px;
+        height: 43px;
+        padding: 0 5px;
+        font-size: 12px;
+    }
+
+    #game-content .key.special-key {
+        min-width: 48px;
+        font-size: 9px;
+    }
+
+    #game-content .hangman-key {
+        width: 32px;
+        height: 38px;
+        font-size: 12px;
+    }
+}
