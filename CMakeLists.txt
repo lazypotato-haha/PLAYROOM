@@ -12,7 +12,6 @@ set_target_properties(game PROPERTIES
     SUFFIX ".js"
 )
 
-
 target_link_options(game PRIVATE
     "--bind"
     "--no-entry"
@@ -20,5 +19,6 @@ target_link_options(game PRIVATE
     "-sALLOW_MEMORY_GROWTH=1"
     "-sMODULARIZE=1"
     "-sEXPORT_ES6=1"
+    "SHELL:--preload-file ${CMAKE_SOURCE_DIR}/words.txt@/words.txt"
+    "SHELL:--preload-file ${CMAKE_SOURCE_DIR}/words_alpha.txt@/words_alpha.txt"
 )
-

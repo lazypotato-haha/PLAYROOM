@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAYROOM | Mini Games</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <h1>PLAYROOM<span>.</span></h1>
+        <p>Your little corner of fun</p>
+    </header>
+
+    <main>
+        <section id="home-screen" class="screen active">
+            <div class="welcome">
+                <p class="eyebrow">WELCOME TO PLAYROOM</p>
+                <h2>A little fun goes a long way.</h2>
+                <p>Take a break, challenge your brain and play something fun.</p>
+            </div>
+
+            <div class="game-grid">
+                <button class="game-card" onclick="openGame('word')">
+                    <span>🔤</span>
+                    <h3>Word Guess</h3>
+                    <p>Find the hidden five-letter word.</p>
+                </button>
+
+                <button class="game-card" onclick="openGame('hangman')">
+                    <span>🎯</span>
+                    <h3>Hangman</h3>
+                    <p>Guess the word before time runs out.</p>
+                </button>
+
+                <button class="game-card" onclick="openGame('tic')">
+                    <span>⭕</span>
+                    <h3>Tic-Tac-Toe</h3>
+                    <p>Challenge a friend in this classic game.</p>
+                </button>
+
+                <button class="game-card" onclick="openGame('scramble')">
+                    <span>🧩</span>
+                    <h3>Word Scramble</h3>
+                    <p>Unscramble the letters to find the word.</p>
+                </button>
+
+                <button class="game-card" onclick="openGame('number')">
+                    <span>🔢</span>
+                    <h3>Number Guess</h3>
+                    <p>Find the secret number between 1 and 100.</p>
+                </button>
+            </div>
+        </section>
+
+        <section id="game-screen" class="screen">
+            <button class="back-button" onclick="goHome()">← Back to games</button>
+            <div id="game-content"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>PLAYROOM · Made for curious minds</p>
+        <p class="project-credit">
+            An Object Oriented Programming Project made by Purva Bahirat and Pratiksha Shinde
+        </p>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

@@ -1,1 +1,1 @@
-/usr/bin/em++ --bind --no-entry -sWASM=1 -sALLOW_MEMORY_GROWTH=1 -sMODULARIZE=1 -sEXPORT_ES6=1 @CMakeFiles/game.dir/objects1.rsp -o game.js 
+/usr/bin/em++ --bind --no-entry -sWASM=1 -sALLOW_MEMORY_GROWTH=1 -sMODULARIZE=1 -sEXPORT_ES6=1 --preload-file /workspaces/PLAYROOM/words.txt@/words.txt --preload-file /workspaces/PLAYROOM/words_alpha.txt@/words_alpha.txt @CMakeFiles/game.dir/objects1.rsp -o game.js 

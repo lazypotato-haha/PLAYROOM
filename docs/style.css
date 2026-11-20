@@ -1,0 +1,692 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    --cream: #F7F4EC;
+    --ink: #34352F;
+    --muted: #77776D;
+    --white: #FFFDF8;
+    --border: #E7E1D5;
+
+    --sage-bg: #EDF2E9;
+    --sage-main: #A8B99A;
+    --sage-dark: #526B50;
+    --sage-deep: #344735;
+
+    --terra-bg: #F5E9DF;
+    --terra-main: #D99A78;
+    --terra-dark: #B9654B;
+    --terra-deep: #713F35;
+
+    --blue-bg: #E9EEF2;
+    --blue-main: #A9BDD0;
+    --blue-dark: #526F8C;
+    --blue-deep: #344D68;
+
+    --rose-bg: #F4E7E4;
+    --rose-main: #D8AAA5;
+    --rose-dark: #A65E65;
+    --rose-deep: #663D4A;
+
+    --yellow-bg: #F5EEDB;
+    --yellow-main: #E5C36B;
+    --yellow-dark: #B68B37;
+    --yellow-deep: #5E4A2D;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* HEADER */
+
+.navbar {
+    width: 100%;
+    text-align: center;
+    padding: 55px 20px 20px;
+    margin: 0 auto;
+}
+
+.navbar h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(46px, 6vw, 68px);
+    font-weight: 900;
+    letter-spacing: -3px;
+    margin: 0;
+    color: var(--ink);
+}
+
+.navbar h1 span {
+    color: #B68B37;
+}
+
+.navbar p {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 7px 0 0;
+}
+
+/* HOME SCREEN */
+
+#home-screen {
+    display: none;
+    width: 100%;
+    padding: 20px 25px 45px;
+}
+
+#home-screen.active {
+    display: block;
+}
+
+.welcome {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 42px;
+}
+
+.welcome .eyebrow {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #9A8968;
+    margin-bottom: 13px;
+}
+
+.welcome h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(27px, 4vw, 37px);
+    font-weight: 900;
+    margin: 0 0 10px;
+}
+
+.welcome > p:last-child {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* GAME CARDS */
+
+.game-grid {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 23px;
+}
+
+.game-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 205px;
+    padding: 27px 23px;
+    border: 1px solid var(--border);
+    border-radius: 19px;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    color: var(--ink);
+    box-shadow: 0 4px 12px rgba(65, 55, 35, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(65, 55, 35, 0.09);
+}
+
+.game-card > span {
+    font-size: 31px;
+    margin-bottom: 19px;
+}
+
+.game-card h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 21px;
+    font-weight: 900;
+    margin: 0 0 8px;
+}
+
+.game-card p {
+    font-size: 13px;
+    line-height: 1.65;
+    color: #77776D;
+    margin: 0;
+}
+
+/* INDIVIDUAL CARD COLOURS */
+
+.game-card:nth-child(1) {
+    background: var(--sage-bg);
+    border-color: #D5E0D0;
+}
+
+.game-card:nth-child(2) {
+    background: var(--terra-bg);
+    border-color: #E9D2C2;
+}
+
+.game-card:nth-child(3) {
+    background: var(--blue-bg);
+    border-color: #D3DEE8;
+}
+
+.game-card:nth-child(4) {
+    background: var(--rose-bg);
+    border-color: #E9D1CF;
+}
+
+.game-card:nth-child(5) {
+    background: var(--yellow-bg);
+    border-color: #E9DEBF;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    color: #89877D;
+    padding: 25px 15px 30px;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.project-credit {
+    font-size: 12px;
+    margin-top: 6px;
+    opacity: 0.8;
+}
+
+/* GAME SCREEN */
+
+#game-screen {
+    display: none;
+    width: 100%;
+    padding: 25px 20px 60px;
+}
+
+#game-screen.active {
+    display: block;
+}
+
+.back-button {
+    display: block;
+    max-width: 700px;
+    margin: 0 auto 25px;
+    padding: 11px 19px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--white);
+    color: var(--ink);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background: #EFEAE0;
+}
+
+#game-content {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 38px 30px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: var(--white);
+    text-align: center;
+    box-shadow: 0 6px 22px rgba(65, 55, 35, 0.05);
+}
+
+#game-content h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 29px;
+    font-weight: 900;
+    margin: 0 0 14px;
+}
+
+#game-content p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+#game-content button:not(.key):not(.hangman-key):not(.tic-cell) {
+    padding: 12px 21px;
+    margin: 8px 5px;
+    border: none;
+    border-radius: 10px;
+    background: #E8E4DA;
+    color: var(--ink);
+    font-weight: 800;
+    cursor: pointer;
+    max-width: 100%;
+}
+
+#game-content button:hover {
+    filter: brightness(0.97);
+}
+
+#game-content input {
+    max-width: 100%;
+    padding: 13px 15px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #FFFDF8;
+    color: var(--ink);
+    outline: none;
+}
+
+#game-content input:focus {
+    border-color: #A49A83;
+    box-shadow: 0 0 0 3px rgba(164, 154, 131, 0.15);
+}
+
+.difficulty-picker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px auto 22px;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.difficulty-picker select {
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--white);
+    font-weight: 700;
+}
+
+/* WORD GUESS */
+
+#game-content:has(#word-board) {
+    background: var(--sage-bg);
+    border-color: #D5E0D0;
+}
+
+#game-content:has(#word-board) button:not(.key) {
+    background: var(--sage-dark);
+    color: white;
+}
+
+#game-content:has(#word-board) button:not(.key):hover {
+    background: var(--sage-deep);
+}
+
+#word-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    margin: 28px auto;
+}
+
+.word-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.word-tile {
+    width: 53px;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #C8D3C2;
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--sage-deep);
+    font-size: 23px;
+    font-weight: 900;
+}
+
+.word-tile.green,
+.key.green {
+    background: #78966F !important;
+    border-color: #78966F !important;
+    color: white !important;
+}
+
+.word-tile.yellow,
+.key.yellow {
+    background: #D8B65E !important;
+    border-color: #D8B65E !important;
+    color: white !important;
+}
+
+.word-tile.grey,
+.key.grey {
+    background: #777C75 !important;
+    border-color: #777C75 !important;
+    color: white !important;
+}
+
+#word-keyboard {
+    width: 100%;
+    max-width: 440px;
+    margin: 25px auto;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin: 8px 0;
+}
+
+.key {
+    min-width: 32px;
+    height: 45px;
+    padding: 0 6px;
+    border: none;
+    border-radius: 6px;
+    background: #C8D5C2;
+    color: var(--sage-deep);
+    font-size: 13px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.key:hover {
+    background: var(--sage-main);
+}
+
+.special-key {
+    min-width: 56px;
+    font-size: 10px;
+}
+
+/* HANGMAN */
+
+#game-content:has(#hangman-drawing) {
+    background: var(--terra-bg);
+    border-color: #E9D2C2;
+}
+
+#game-content:has(#hangman-drawing) button:not(.hangman-key) {
+    background: var(--terra-dark);
+    color: white;
+}
+
+#game-content:has(#hangman-drawing) button:not(.hangman-key):hover {
+    background: var(--terra-deep);
+}
+
+.hangman-svg {
+    display: block;
+    width: 210px;
+    max-width: 100%;
+    height: 210px;
+    margin: 20px auto;
+}
+
+.hangman-svg line,
+.hangman-svg circle {
+    stroke: var(--terra-deep);
+    stroke-width: 4;
+    fill: none;
+    stroke-linecap: round;
+}
+
+#hangman-word {
+    font-size: 28px !important;
+    letter-spacing: 5px;
+    color: var(--terra-deep);
+    margin: 22px auto !important;
+}
+
+.hangman-counter {
+    color: var(--terra-deep) !important;
+    font-weight: 700;
+}
+
+#hangman-keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 410px;
+    margin: 25px auto;
+}
+
+.hangman-key {
+    width: 37px;
+    height: 39px;
+    border: none;
+    border-radius: 7px;
+    background: #E3B79E;
+    color: var(--terra-deep);
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.hangman-key:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.hangman-key.correct-key {
+    background: #77956D;
+    color: white;
+}
+
+.hangman-key.wrong-key {
+    background: #A85B4A;
+    color: white;
+}
+
+/* TIC TAC TOE */
+
+#game-content:has(.tic-board) {
+    background: var(--blue-bg);
+    border-color: #D3DEE8;
+}
+
+#game-content:has(.tic-board) button:not(.tic-cell) {
+    background: var(--blue-deep);
+    color: white;
+}
+
+#tic-message {
+    color: var(--blue-deep) !important;
+    font-weight: 800;
+    margin: 20px auto !important;
+}
+
+.tic-board {
+    display: grid;
+    grid-template-columns: repeat(3, 85px);
+    grid-template-rows: repeat(3, 85px);
+    gap: 10px;
+    justify-content: center;
+    margin: 30px auto;
+}
+
+.tic-cell {
+    border: 2px solid #C5D3E0;
+    border-radius: 12px;
+    background: var(--white);
+    color: var(--blue-deep);
+    font-family: 'Nunito', sans-serif;
+    font-size: 39px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.tic-cell:hover {
+    background: #F5EBCB;
+}
+
+/* WORD SCRAMBLE */
+
+#game-content:has(#scrambled-word) {
+    background: var(--rose-bg);
+    border-color: #E9D1CF;
+}
+
+#game-content:has(#scrambled-word) button {
+    background: var(--rose-dark);
+    color: white;
+}
+
+#scrambled-word {
+    color: var(--rose-deep);
+    font-size: clamp(28px, 5vw, 42px) !important;
+    letter-spacing: 6px;
+    margin: 28px auto !important;
+    overflow-wrap: anywhere;
+}
+
+#scramble-hint {
+    color: var(--rose-deep) !important;
+    font-weight: 700;
+    margin: 18px auto !important;
+}
+
+#scramble-input {
+    display: block;
+    width: 230px;
+    margin: 20px auto;
+    border-color: #D8AAA5 !important;
+}
+
+/* NUMBER GUESS */
+
+#game-content:has(#number-input) {
+    background: var(--yellow-bg);
+    border-color: #E9DEBF;
+}
+
+#game-content:has(#number-input) button {
+    background: var(--yellow-dark);
+    color: white;
+}
+
+#number-input {
+    display: block;
+    width: 220px;
+    margin: 22px auto;
+    border-color: #D8BD7A !important;
+}
+
+#number-message {
+    color: var(--yellow-deep) !important;
+    font-weight: 800;
+    font-size: 16px;
+    margin: 20px auto !important;
+}
+
+#number-attempts {
+    color: var(--yellow-deep);
+    font-weight: 900;
+}
+
+/* RESPONSIVE LAYOUT */
+
+@media (max-width: 850px) {
+    .game-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 680px;
+    }
+}
+
+@media (max-width: 520px) {
+    .navbar {
+        padding-top: 35px;
+    }
+
+    #home-screen {
+        padding: 15px 17px 35px;
+    }
+
+    .welcome {
+        margin-bottom: 28px;
+    }
+
+    .game-grid {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+        gap: 15px;
+    }
+
+    .game-card {
+        min-height: 155px;
+        padding: 23px;
+    }
+
+    #game-screen {
+        padding: 20px 12px 40px;
+    }
+
+    #game-content {
+        padding: 28px 13px;
+    }
+
+    #game-content h2 {
+        font-size: 25px;
+    }
+
+    .word-row {
+        gap: 6px;
+    }
+
+    .word-tile {
+        width: 43px;
+        height: 43px;
+        font-size: 19px;
+    }
+
+    .keyboard-row {
+        gap: 3px;
+    }
+
+    .key {
+        min-width: 26px;
+        height: 40px;
+        padding: 0 4px;
+        font-size: 12px;
+    }
+
+    .special-key {
+        min-width: 43px;
+        font-size: 9px;
+    }
+
+    #hangman-keyboard {
+        gap: 6px;
+    }
+
+    .hangman-key {
+        width: 31px;
+        height: 36px;
+    }
+
+    .tic-board {
+        grid-template-columns: repeat(3, 70px);
+        grid-template-rows: repeat(3, 70px);
+        gap: 7px;
+    }
+
+    .tic-cell {
+        font-size: 32px;
+    }
+}

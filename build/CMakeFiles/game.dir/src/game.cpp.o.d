@@ -298,12 +298,19 @@ CMakeFiles/game.dir/src/game.cpp.o: /workspaces/PLAYROOM/src/game.cpp \
   /usr/share/emscripten/cache/sysroot/include/c++/v1/math.h \
   /usr/share/emscripten/cache/sysroot/include/math.h \
   /usr/share/emscripten/cache/sysroot/include/c++/v1/numeric \
+  /usr/share/emscripten/cache/sysroot/include/c++/v1/fstream \
+  /usr/share/emscripten/cache/sysroot/include/c++/v1/filesystem \
+  /usr/share/emscripten/cache/sysroot/include/c++/v1/stack \
+  /usr/share/emscripten/cache/sysroot/include/c++/v1/deque \
+  /usr/share/emscripten/cache/sysroot/include/c++/v1/iomanip \
+  /usr/share/emscripten/cache/sysroot/include/c++/v1/unordered_set \
+  /usr/share/emscripten/cache/sysroot/include/c++/v1/__functional/is_transparent.h \
+  /usr/share/emscripten/cache/sysroot/include/c++/v1/__hash_table \
+  /usr/share/emscripten/cache/sysroot/include/c++/v1/__node_handle \
+  /usr/share/emscripten/cache/sysroot/include/c++/v1/optional \
   /usr/share/emscripten/cache/sysroot/include/emscripten/bind.h \
   /usr/share/emscripten/cache/sysroot/include/assert.h \
   /usr/share/emscripten/cache/sysroot/include/c++/v1/map \
-  /usr/share/emscripten/cache/sysroot/include/c++/v1/__functional/is_transparent.h \
-  /usr/share/emscripten/cache/sysroot/include/c++/v1/__node_handle \
-  /usr/share/emscripten/cache/sysroot/include/c++/v1/optional \
   /usr/share/emscripten/cache/sysroot/include/c++/v1/__tree \
   /usr/share/emscripten/cache/sysroot/include/emscripten/val.h \
   /usr/share/emscripten/cache/sysroot/include/emscripten/wire.h \

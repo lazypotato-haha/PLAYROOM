@@ -1,9 +1,11 @@
 
+
 import createPlayroomModule from "./build/game.js";
 
 let Module;
 let currentGame = null;
 let activeGame = "";
+let selectedDifficulty = 0;
 let wordInput = "";
 let wordFeedback = [];
 let hangmanGuessed = [];
@@ -18,11 +20,35 @@ async function initializePlayroom() {
         console.log("PLAYROOM C++ engine loaded successfully.");
     } catch (error) {
         console.error("Could not load the C++ engine:", error);
-        gameContent.innerHTML = "<p>Unable to load the games. Please refresh the page.</p>";
+        gameContent.innerHTML =
+            "<p>Unable to load the games. Please refresh the page.</p>";
     }
 }
 
 initializePlayroom();
+
+function difficultySelectorHTML() {
+    return `
+        <div class="difficulty-picker" style="margin: 18px 0;">
+            <label for="difficulty-select">Choose Difficulty: </label>
+            <select id="difficulty-select"
+                onchange="changeDifficulty(this.value)"
+                style="padding: 9px 14px; border-radius: 10px;
+                border: 1px solid #c8b4e8; background: #fff;
+                color: #594477; cursor: pointer;">
+                <option value="0" ${selectedDifficulty === 0 ? "selected" : ""}>
+                    Easy
+                </option>
+                <option value="1" ${selectedDifficulty === 1 ? "selected" : ""}>
+                    Medium
+                </option>
+                <option value="2" ${selectedDifficulty === 2 ? "selected" : ""}>
+                    Difficult
+                </option>
+            </select>
+        </div>
+    `;
+}
 
 function openGame(game) {
     if (!Module) {
@@ -39,29 +65,52 @@ function openGame(game) {
     homeScreen.classList.remove("active");
     gameScreen.classList.add("active");
 
-    switch (game) {
+    createActiveGame();
+}
+
+function createActiveGame() {
+    if (currentGame) {
+        currentGame.delete();
+        currentGame = null;
+    }
+
+    switch (activeGame) {
         case "word":
-            currentGame = new Module.WordGuess();
+            currentGame = new Module.WordGuess(selectedDifficulty);
             showWordGuess();
             break;
+
         case "hangman":
-            currentGame = new Module.Hangman();
+            currentGame = new Module.Hangman(selectedDifficulty);
             hangmanGuessed = [];
             showHangman();
             break;
+
         case "tic":
             currentGame = new Module.TicTacToe();
             showTicTacToe();
             break;
+
         case "scramble":
-            currentGame = new Module.WordScramble();
+            currentGame = new Module.WordScramble(selectedDifficulty);
             showScramble();
             break;
+
         case "number":
             currentGame = new Module.NumberGuess();
             showNumberGuess();
             break;
     }
+}
+
+function changeDifficulty(value) {
+    selectedDifficulty = Number(value);
+
+    if (!["word", "hangman", "scramble"].includes(activeGame)) {
+        return;
+    }
+
+    createActiveGame();
 }
 
 function goHome() {
@@ -84,7 +133,12 @@ function showWordGuess() {
 
     gameContent.innerHTML = `
         <h2>Word Guess</h2>
-        <p>Guess the hidden five-letter word in six attempts.</p>
+        <p>Guess the hidden five-letter word.</p>
+
+        ${difficultySelectorHTML()}
+
+        <p>Attempts: ${currentGame.getMaxAttempts()}</p>
+
         <div id="word-board"></div>
 
         <div id="word-keyboard">
@@ -116,7 +170,8 @@ function showWordGuess() {
 }
 
 function addWordLetter(letter) {
-    if (activeGame === "word" && wordInput.length < 5 &&
+    if (activeGame === "word" &&
+        wordInput.length < 5 &&
         !currentGame.isFinished()) {
         wordInput += letter;
         updateWordBoard();
@@ -124,7 +179,9 @@ function addWordLetter(letter) {
 }
 
 function removeWordLetter() {
-    if (activeGame === "word" && wordInput.length > 0) {
+    if (activeGame === "word" &&
+        wordInput.length > 0 &&
+        !currentGame.isFinished()) {
         wordInput = wordInput.slice(0, -1);
         updateWordBoard();
     }
@@ -148,8 +205,9 @@ function updateWordBoard() {
 
     board.innerHTML = "";
     const attempts = currentGame.getAttempts();
+    const maxAttempts = currentGame.getMaxAttempts();
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < maxAttempts; i++) {
         const row = document.createElement("div");
         row.className = "word-row";
 
@@ -251,6 +309,8 @@ function showHangman() {
         <h2>Hangman</h2>
         <p>Guess the hidden word before the hangman is complete!</p>
 
+        ${difficultySelectorHTML()}
+
         <div id="hangman-drawing"></div>
 
         <h2 id="hangman-word"></h2>
@@ -310,11 +370,13 @@ function updateHangman() {
 }
 
 function guessHangmanLetter(letter) {
-    if (activeGame !== "hangman" || !currentGame) return;
-
-    if (hangmanGuessed.includes(letter) || currentGame.getMistakes() >= 6) {
+    if (activeGame !== "hangman" ||
+        !currentGame ||
+        currentGame.isFinished()) {
         return;
     }
+
+    if (hangmanGuessed.includes(letter)) return;
 
     hangmanGuessed.push(letter);
 
@@ -323,11 +385,6 @@ function guessHangmanLetter(letter) {
 
     if (key) {
         key.disabled = true;
-
-        if (result.includes("already")) {
-            key.classList.remove("correct-key", "wrong-key");
-            return;
-        }
 
         if (currentGame.getDisplayWord().includes(letter)) {
             key.classList.add("correct-key");
@@ -393,6 +450,8 @@ function showScramble() {
         <h2>Word Scramble</h2>
         <p>Rearrange the letters to find the correct word.</p>
 
+        ${difficultySelectorHTML()}
+
         <h1 id="scrambled-word"></h1>
 
         <button onclick="showHint()">Show Hint</button>
@@ -418,7 +477,7 @@ function showHint() {
 
 function submitScramble() {
     const input = document.getElementById("scramble-input");
-    const result = currentGame.submitAnswer(input.value);
+    const result = currentGame.submitAnswer(input.value.trim());
 
     document.getElementById("scramble-message").textContent = result;
     document.getElementById("scramble-score").textContent =
@@ -472,6 +531,7 @@ function restartNumber() {
 Object.assign(window, {
     openGame,
     goHome,
+    changeDifficulty,
     addWordLetter,
     removeWordLetter,
     submitWordGuess,

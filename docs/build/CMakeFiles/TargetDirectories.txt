@@ -1,0 +1,3 @@
+/workspaces/PLAYROOM/build/CMakeFiles/game.dir
+/workspaces/PLAYROOM/build/CMakeFiles/edit_cache.dir
+/workspaces/PLAYROOM/build/CMakeFiles/rebuild_cache.dir
